@@ -1,0 +1,6 @@
+import re
+upi=input("Enter UPI id: \n")
+if(len(upi)==21 and re.findall('\d{10}[@][s][o][m][a][i][y][a][p][a][y]',upi)):
+    print("valid upi and your transaction is complete")
+else:
+    print("Invalid upi! Please try again")
