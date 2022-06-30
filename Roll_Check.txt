@@ -1,0 +1,6 @@
+def check_rollNo(a):
+    a=str(a)
+    if(len(a)==11):
+        print("VALID")
+    else:
+        print("INVALID")

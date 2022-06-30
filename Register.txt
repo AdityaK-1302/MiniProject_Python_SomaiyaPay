@@ -1,0 +1,43 @@
+import re
+users={}
+def register():
+    l=0
+    u=0
+    p=0
+    d=0
+    rollno=int(input("PLEASE ENTER YOUR ROLL NUMBER"))
+    rollno=str(rollno)
+    if(len(rollno)==11):
+        username_local=str(input("PLEASE ENTER YOUR NAME TO BE REGISTERED \n"))
+        password_local=str(input("PLEASE ENTER A PASSWORD\n"))
+        if (len(password_local) >= 8):
+            for i in password_local:
+ 
+            # counting lowercase alphabets
+                if (i.islower()):
+                    l+=1           
+ 
+            # counting uppercase alphabets
+                if (i.isupper()):
+                    u+=1           
+ 
+            # counting digits
+                if (i.isdigit()):
+                    d+=1           
+ 
+            # counting the mentioned special characters
+                if(i=='@'or i=='$' or i=='_'):
+                    p+=1          
+        if (l>=1 and u>=1 and p>=1 and d>=1 and l+p+u+d==len(password_local)):
+            print("YOU HAVE BEEN SUCCESSFULLY REGISTERED WITH SOMAIYA PAY")
+            return username_local,password_local
+            
+        else:
+            print("INVALID PASSWORD \n PLEASE RE-REGISTER")
+            register() 
+        
+    else:
+        print("YOU HAVE ENTERED THE WRONG ROLL NUMBER \n PLEASE RE-REGISTER")
+        register() 
+username,password=register()
+users[username]=password
