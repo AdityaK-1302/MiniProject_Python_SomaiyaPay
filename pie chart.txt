@@ -1,0 +1,17 @@
+from matplotlib import pyplot as plt
+import numpy as nm
+lst=[]
+amt=[]
+n=int(input("Enter the types of expenditures:"))
+for i in range(n):
+    typ=input()
+    lst.append(typ)
+print("Enter amount spent on each type:")   
+for i in range(n):
+    l=int(input())
+    amt.append(l)
+    
+fig=plt.figure(figsize=(10, 7))
+plt.pie(amt, labels = lst)
+plt.show()
+    
