@@ -1,0 +1,82 @@
+def canteen():
+    bill=0
+    print("WELCOME TO THE SOMAIYA CANTEEN")
+    print("PLEASE CHOOSE")
+    choice=int(input("1.Somaiya Food Bar \n2.Somaiya Cafe\n"))
+    if(choice==1):
+        print("WELCOME TO FOOD BAR")
+        print("WHAT WOULD YOU LIKE TO HAVE")
+        print("1.Street Food\n2.Chinese\n3.Italian")
+        food=int(input())
+        if(food==1):
+            print("1.Sev Puri-  Rs.40")
+            print("2.Bhel Puri- Rs.40")
+            print("3.Dahi Puri- Rs.40")
+            ch1=int(input())
+            if(ch1==1 or ch1==2 or ch1==3):
+                quan1=int(input("ENTER NUMBER OF PORTIONS REQUIRED"))
+                bill=40*quan1
+            else:
+                print("WRONG CHOICE.PLEASE RE-TRY")
+                canteen()
+        elif(food==2):
+            print("1.Hakka Noodles-   Rs.100")
+            print("2.Fried Rice-      Rs.100")
+            print("3.Manchurian-      Rs.100")
+            print("4.Chinese Platter- Rs.240")
+            ch2=int(input())
+            if(ch2==1 or ch2==2 or ch2==3 ):
+                quan2=int(input("ENTER NUMBER OF PORTIONS REQUIRED"))
+                bill=100*quan2
+            elif(ch2==4):
+                quan2=int(input("ENTER NUMBER OF PORTIONS REQUIRED"))
+                bill=240*quan2
+            else:
+                print("WRONG CHOICE.PLEASE RE-TRY")
+                canteen()    
+        elif(food==3):
+            print("1.Pizza-     Rs.160")
+            print("2.Pasta-     Rs.140")
+            print("3.Au Gratin- Rs.180")
+            ch3=int(input())
+            if(ch3==1):
+                quan3=int(input("ENTER NUMBER OF PORTIONS REQUIRED"))
+                bill=160*quan3
+            elif(ch3==2):
+                quan3=int(input("ENTER NUMBER OF PORTIONS REQUIRED"))
+                bill=140*quan3
+            elif(ch3==3):
+                quan3=int(input("ENTER NUMBER OF PORTIONS REQUIRED"))
+                bill=180*quan3    
+            else:
+                print("WRONG CHOICE.PLEASE RE-TRY")
+                canteen()
+        else:
+            print("WRONG CHOICE.PLEASE RE-TRY")
+            canteen()
+    elif(choice==2):
+        print("WELCOME TO Cafe")
+        print("WHAT DRINK WOULD YOU LIKE TO HAVE")
+        print("1.Tea-Rs.15\n2.Coffee-Rs.15\n3.Watermelon Juice-Rs.60\n4.Mojito-Rs.70\n5.Hot Chocolate-Rs.75")
+        cho1=int(input())
+        if(cho1==1 or cho1==2):
+            quant=int(input("ENTER NUMBER OF PORTIONS REQUIRED"))
+            bill=15*quant1
+        elif(cho1==3):
+            quant1=int(input("ENTER NUMBER OF PORTIONS REQUIRED"))
+            bill=60*quant
+        elif(cho1==4):
+            quant=int(input("ENTER NUMBER OF PORTIONS REQUIRED"))
+            bill=70*quant
+        elif(cho1==5):
+            quant=int(input("ENTER NUMBER OF PORTIONS REQUIRED"))
+            bill=75*quant    
+        else:
+            print("WRONG CHOICE.PLEASE RE-TRY")
+            canteen()
+    else:
+        print("WRONG CHOICE.PLEASE RE-TRY")
+        canteen()
+    return bill    
+a=canteen()
+print(a)
