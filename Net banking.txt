@@ -1,0 +1,17 @@
+import re
+nb=input("Enter Bank Name:")
+if(re.findall('\D+',nb)):
+    print("Valid Bank Name")
+else:
+    print("Invalid Bank Name")
+mbn=input("Enter Mobile Number")
+if(len(mbn)==10 and re.findall('\d{10}',mbn)):
+    print("valid mobile number")
+else:
+    print("Invalid mobile number")
+otp=input("Enter 4- digit OTP")
+if(len(otp)==4):
+    print("Valid OTP")
+else:
+    print("Invalid OTP")
+
