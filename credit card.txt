@@ -1,0 +1,17 @@
+import re
+cardnumber = input("Enter the credit card number\n")
+if(len(cardnumber)==19 and re.findall('[4-6]\d{3}[-]\d{4}[-]\d{4}[-]\d{4}',cardnumber)):
+    print("It is a valid credit card number")
+else:
+    print("It isn't a valid credit card number")
+date = input("Enter the expiry date of credit card \n")
+if(len(date)==5 and re.findall('\d{2}[/]\d{2}',date)):
+    print("Valid date")
+else:
+    print("Invalid date")
+    
+cvv =input("Enter the CVV of the credit card\n")
+if(len(cvv)==3 and re.findall('\d{3}',cvv)):
+    print("Valid CVV")
+else:
+    print("Invalid CVV")
