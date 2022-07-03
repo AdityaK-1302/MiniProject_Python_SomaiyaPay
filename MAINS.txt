@@ -1,0 +1,146 @@
+import re
+print("WELCOME TO SOMAIYA PAY")
+print("KNOWLEDGE ALONE LIBERATES")
+for i in range(0,3):
+        {
+            print()
+        }
+def mains():        
+    print("1.REGISTER")
+    print("2.ADD MONEY")
+    print("3.PAY MONEY")
+    print("4.PASSBOOK")
+    print("5.USAGE REVIEW")
+    print("6.EXIT")   
+    ch=int(input("PLEASE ENTER YOUR CHOICE\n"))
+    return ch
+choice=mains()    
+def input_password():
+    password = input("ENTER PASSWORD: ")
+    
+def pass_check(password):
+    l=0
+    u=0
+    p=0
+    d=0
+    if (len(password) >= 8):
+        for i in password:
+            if (i.islower()):
+                l+=1          
+            if (i.isupper()):
+                u+=1           
+            if (i.isdigit()):
+                d+=1           
+            if(i=='@'or i=='$' or i=='_'):
+                p+=1
+    else:
+        return False
+    if (l>=1 and u>=1 and p>=1 and d>=1 and l+p+u+d==len(password)):
+        return True
+    else:
+        return False
+        
+def register():
+    rollno = int(input("PLEASE ENTER YOUR ROLL NUMBER: "))
+    rollno=str(rollno)
+    if (len(rollno) == 11):
+        username = input("PLEASE ENTER YOUR NAME: ")
+        password = input("ENTER PASSWORD: ")
+        if pass_check(password):
+            print("Welcome {}, you have been successfully registerd to SomaiyaPay!!".format(username))
+        else:
+            while pass_check(password) == False:
+                print("INVALID PASSWORD. PLEASE RE-ENTER.")
+                password = input("ENTER PASSWORD: ")
+                pass_check(password)
+            print("Welcome {}, you have been successfully registerd to SomaiyaPay!!".format(username))
+            
+    else:
+        print("INVALID PASSWORD. PLEASE RE-ENTER.")
+        register()
+def exit():
+    print("THANK YOU FOR USING SOMAIYA PAY")
+    print("............WE CARE............")
+def addMoneyOptions():
+    print("OPTIONS AVAILABLE TO ADD MONEY")
+    print("1.CREDIT CARD")
+    print("2.UPI")
+    print("3.NET BANKING")
+    ch=int(input("ENTER YOUR CHOICE: "))
+    return ch
+    
+    
+    
+def addMoney():
+    CH=addMoneyOptions()
+    if(CH==1):
+        creditCard()
+    elif(CH==2):
+        upi()
+    elif(CH==3):
+        netBanking()
+    else:
+        print("WRONG OPTION CHOSEN.PLEASE RE-ELECT")
+        addMoney()
+        
+        
+        
+def upi():
+    upi=input("Enter UPI id: \n")
+    if(len(upi)==21 and re.findall('\d{10}[@][s][o][m][a][i][y][a][p][a][y]',upi)):
+        x=int(input("Enter the amount to be added in Rs. "))
+        print("Rs.{} HAVE BEEN ADDED TO YOUR SOMAIYA PAY ACCOUNT".format(x))
+    else:
+        print("INVALID UPI.PLEASE RE-ENTER")
+        upi()
+        
+        
+        
+def input_cvv():
+    cvv = int(input("Enter CVV: "))
+def check_cvv(cvv):
+    import re
+    if (len(cvv) == 3 and re.findall('\d{3}', cvv)):
+        return True
+    else:
+        return False
+def check_cardnumber(cardnumber):
+    import re
+    if (len(cardnumber) == 19 and re.findall('[4-6]\d{3}[-]\d{4}[-]\d{4}[-]\d{4}', cardnumber)):
+        return True
+    else:
+        return False
+def check_date(date):
+    import re
+    if (len(date) == 5 and re.findall('\d{2}[/]\d{2}', date)):
+        return True
+    else:
+        return False        
+def creditCard():
+    cardnumber = input("Enter your credit card number: ")
+    while check_cardnumber(cardnumber) == False:
+        print("Invalid Credit Card Number. Please Re-Enter.")
+        cardnumber = input("Enter your credit card number: ")
+    exp_date = input("Enter expiry date: ")
+    cvv = input("Enter CVV: ")
+    while check_cvv(cvv) == False:
+        print("Invalid Credit CVV. Please Re-Enter.")
+        cvv = input("Enter your CVV number: ")
+    amount = int(input("Enter amount to be added: ")) 
+    print("{} has been added to your SomaiyaPay Account.".format(amount))
+
+
+
+    
+if(choice==1):
+    register()
+elif(choice==2):
+    addMoney()
+elif(choice==3):
+    print(" ")
+elif(choice==4):
+    print(" ")
+elif(choice==5):
+    print(" ")
+elif(choice==6):
+    exit()

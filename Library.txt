@@ -1,0 +1,10 @@
+def library():
+    days=int(input("PLEASE ENTER THE NUMBER OF DAYS THAT YOU HAVE KEPT THE BOOK FOR AFTER THE DUE DATE \n"))
+    if(days>0 and days<=5):
+        bill=days*5
+    elif(days>5 and days<=10):
+        bill=25+(days-5)*10
+    else:
+        bill=25+50+(days-10)*15
+    print("Amount You Have to pay as a fine is Rs.{}".format(bill))    
+library()    

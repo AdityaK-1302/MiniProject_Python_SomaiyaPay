@@ -1,0 +1,19 @@
+def check_email(email_id):
+    lists=[]
+    check=False
+    for i in email_id:
+        if(i=='@'):
+            check=True
+    for i in email_id:
+        if(i==' '):
+            check=False        
+    if check==True:
+        lists=email_id.split('@')
+        if(lists[1]=="somaiya.edu"):
+            print("Valid")
+        else:
+            print("NOT VALID")
+    else:
+        print("NOT VALID")
+b="devansh.khandor@somaiya.edu"    
+a=check_email(b)    
