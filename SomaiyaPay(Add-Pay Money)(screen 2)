@@ -1,0 +1,220 @@
+class update_cur:
+    amt = 0
+    def add(self,amt):
+        self.amt += amt
+    def sub(self, amt):
+        self.amt -= amt
+addmoney_list = []
+paidmoney_can_list =[]
+paidmoney_sta_list =[]
+from tkinter import *
+from tkinter import messagebox
+a = update_cur()
+def addmoney():
+
+    def addmoneycc():
+        def add_it_cc():
+            def check_ccno(ccno):
+                import re
+                if (len(ccno) == 19 and re.findall('[4-6]\d{3}[-]\d{4}[-]\d{4}[-]\d{4}', ccno)):
+                    return True
+                else:
+                    return False
+
+            def check_cvv(cvv):
+                import re
+                if (len(cvv) == 3 and re.findall('\d{3}', cvv)):
+                    return True
+                else:
+                    return False
+
+            ccno = ccno_info.get()
+            cvv = cvv_info.get()
+            exp = exp_info.get()
+            amountcc = amt_info.get()
+
+            if ccno == "":
+                messagebox.showerror("ERROR", "Please Enter Card Number.")
+            elif cvv == "":
+                messagebox.showerror("ERROR", "Please Enter CVV.")
+            elif exp == "":
+                messagebox.showerror("ERROR", "Please Enter expiry date")
+            elif check_ccno(ccno) == False or check_cvv(cvv) == False:
+                messagebox.showerror("ERROR", "Invalid Card Number or CVV. Please Re-Check")
+            elif amountcc == "":
+                messagebox.showerror("ERROR", "Please enter Amount.")
+            else:
+                addmoney_list.append(int(amountcc))
+                a.add(int(amountcc))
+                Label(screen, text="SUCCESSFULLY ADDED", font=("BankGothic Lt BT", 10), fg="green").place(x=80,y=330)
+                print(a.amt)
+                print(addmoney_list)
+
+
+
+
+        Label(screen, text="Card Number", font=10).place(x=30, y=200)
+        Label(screen, text="CVV", font=10).place(x=30, y=230)
+        Label(screen, text="Exp Date", font=10).place(x=30, y=260)
+        Label(screen, text="Amount", font=10).place(x=30, y=290)
+        Button(screen, text="Add", font=("BankGothic Lt BT", 10),command=add_it_cc).place(x=30, y=330)
+
+
+        ccno_info = StringVar()
+        cvv_info = StringVar()
+        exp_info = StringVar()
+        amt_info = StringVar()
+
+        ccno_entry = Entry(screen, font=10, textvariable=ccno_info)
+        ccno_entry.place(x=170, y=200)
+        cvv_entry = Entry(screen, font=10, textvariable=cvv_info)
+        cvv_entry.place(x=170, y=230)
+        exp_entry = Entry(screen, font=10, textvariable=exp_info)
+        exp_entry.place(x=170, y=260)
+        amt_entry = Entry(screen, font=10, textvariable=amt_info)
+        amt_entry.place(x=170, y=290)
+    def addmoneyupi():
+        def add_it_upi():
+            def check_upiid(upi):
+                import re
+                if (len(upi) == 21 and re.findall('\d{10}[@][s][o][m][a][i][y][a][p][a][y]', upi)):
+                    return True
+                else:
+                    return False
+
+            upi = upiid_info.get()
+            amtupi = amt_info.get()
+
+            if upi=="":
+                messagebox.showerror("ERROR", "Please enter UPI")
+            elif check_upiid(upi)==False:
+                messagebox.showerror("ERROR", "InValid UPI. Please Re-Enter(mobilenumber@somaiyapay)")
+            elif amtupi=="":
+                messagebox.showerror("ERROR", "Please enter amount")
+            else:
+                addmoney_list.append(int(amtupi))
+                a.add(int(amtupi))
+                Label(screen, text="SUCCESSFULLY ADDED", font=("BankGothic Lt BT", 10), fg="green").place(x=500, y=260)
+                print(a.amt)
+                print(addmoney_list)
+
+
+
+
+        Label(screen, text="UPI ID", font=10).place(x=420, y=200)
+        Label(screen, text="Amount", font=10).place(x=420, y=230)
+        Button(screen, text="Add", font=("BankGothic Lt BT", 10),command=add_it_upi).place(x=420, y=260)
+
+        upiid_info = StringVar()
+        amt_info = StringVar()
+
+        upiid_entry = Entry(screen, font=10,width=23,textvariable=upiid_info)
+        upiid_entry.place(x=500, y=200)
+        amt_entry = Entry(screen, font=10, textvariable=amt_info)
+        amt_entry.place(x=500, y=230)
+
+
+
+    Button(screen, text="Credit Card", font=("BankGothic Lt BT", 15, "bold"),command=addmoneycc).place(x=250, y=80)
+    Button(screen, text="UPI", font=("BankGothic Lt BT", 15, "bold"),command=addmoneyupi).place(x=420, y=80)
+
+def paymoney():
+    def paycanteen():
+        def pay_it_canteen():
+            amtcat = amt_to_canteen.get()
+            if amtcat=="":
+                messagebox.showerror("ERROR", "Please enter Amount.")
+            elif a.amt < int(amtcat):
+                messagebox.showerror("ERROR", "Balance Insufficient. Pls Add money")
+            else:
+                paidmoney_can_list.append(int(amtcat))
+                a.sub(int(amtcat))
+                Label(screen, text="SUCCESSFULLY PAID", font=("BankGothic Lt BT", 10), fg="green").place(x=80, y=390)
+                print(a.amt)
+                print(paidmoney_can_list)
+
+
+
+        Label(screen, text="Pay Rupess.",font=("BankGothic Lt BT", 15)).place(x=30,y=360)
+        amt_to_canteen = StringVar()
+        amt_to_canteen_entry = Entry(screen, font=("BankGothic Lt BT", 15),width=10, textvariable=amt_to_canteen)
+        amt_to_canteen_entry.place(x=170, y=360)
+        Label(screen, text="to canteen.",font=("BankGothic Lt BT", 15)).place(x=300,y=360)
+        Button(screen, text="Pay", font=("BankGothic Lt BT", 10),command=pay_it_canteen).place(x=30, y=390)
+
+    def paysta():
+        def pay_it_stat():
+            amtstat = amt_to_stat.get()
+            if amtstat == "":
+                messagebox.showerror("ERROR", "Please enter Amount.")
+            elif a.amt < int(amtstat):
+                messagebox.showerror("ERROR", "Balance Insufficient. Pls Add money")
+            else:
+                paidmoney_sta_list.append(int(amtstat))
+                a.sub(int(amtstat))
+                Label(screen, text="SUCCESSFULLY PAID", font=("BankGothic Lt BT", 10), fg="green").place(x=80, y=460)
+                print(a.amt)
+                print(paidmoney_sta_list)
+
+        amt_to_stat = StringVar()
+        Label(screen, text="Pay Rupess.", font=("BankGothic Lt BT", 15)).place(x=30, y=430)
+        amt_to_stat_entry = Entry(screen, font=("BankGothic Lt BT", 15), width=10,textvariable=amt_to_stat)
+        amt_to_stat_entry.place(x=170, y=430)
+        Label(screen, text="to stationery.", font=("BankGothic Lt BT", 15)).place(x=300, y=430)
+        Button(screen, text="Pay", font=("BankGothic Lt BT", 10), command=pay_it_stat).place(x=30, y=460)
+
+    Button(screen, text="Canteen", font=("BankGothic Lt BT", 15, "bold"),command=paycanteen).place(x=250, y=130)
+    Button(screen, text="Stationery", font=("BankGothic Lt BT", 15, "bold"),command=paysta).place(x=400, y=130)
+
+def stat():
+    Label(screen, text="Paid to Canteen", font=("BankGothic Lt BT", 15,"bold"),fg="Red").place(x=750, y=250 )
+    Label(screen, text="Paid to Stationery", font=("BankGothic Lt BT", 15, "bold"), fg="Blue").place(x=750, y=280)
+    Label(screen, text="Balance", font=("BankGothic Lt BT", 15, "bold"), fg="green").place(x=750, y=310)
+    income = sum(addmoney_list)
+    paidcan = sum(paidmoney_can_list)
+    paidsta = sum(paidmoney_sta_list)
+    left = income - (paidcan + paidsta)
+    """"
+    per_can = (paidcan/income)*100
+    per_sta = (paidsta/income)*100
+    per_left = 100 - (per_can + per_sta)
+    deg_can = (18*per_can)/5
+    deg_sta = (18*per_sta)/5
+    deg_left = 360 - (deg_can + deg_sta)
+    print(deg_left, deg_sta, deg_can)
+    """
+    def angle(n):
+        return 360*n
+
+    canvas = Canvas(screen, width=200, height=200)
+    canvas.place(x=800, y=50)
+
+    canvas.create_arc((2, 2, 150, 150), fill="red", outline="black", start=angle(0), extent=angle(paidcan/income))
+    canvas.create_arc((2, 2, 150, 150), fill="blue", outline="black", start=angle(paidcan/income), extent=angle(paidsta/income))
+    canvas.create_arc((2, 2, 150, 150), fill="green", outline="black", start=angle((paidcan/income) +(paidsta/income) ), extent=angle(left/income))
+    canvas.create_arc((2, 2, 150, 150), fill="black", outline="black", start=angle((left/income)+((paidcan/income) +(paidsta/income))), extent=angle(0))
+
+
+
+
+
+
+screen = Tk()
+screen.geometry("1044x1044")
+#verical and horizontal red lines
+text1 = Label(text = "SomaiyaPay",bg = 'Red', fg = 'Black', padx = 233, pady = 4,
+              font = ("BankGothic Lt BT", 18, "bold"), borderwidth = 3).pack(fill=X)
+text2 = Label(text = "   ",bg = 'Red', borderwidth = 3).pack(side=LEFT, fill=Y)
+
+
+Label(screen, text="What do you want to do?",font = ("BankGothic Lt BT", 15,"bold")).place(x=30, y=50)
+Button(screen, text="View Statistics", font=("BankGothic Lt BT", 18), command=stat).place(x=530, y=50)
+
+
+
+
+Button(screen, text="Add Money", font=("BankGothic Lt BT", 18, "bold"),command=addmoney).place(x=30, y=80)
+Button(screen, text="PAY Money", font=("BankGothic Lt BT", 18, "bold"),command=paymoney).place(x=30, y=130)
+
+
+screen.mainloop()
